@@ -18,14 +18,9 @@ import javafx.scene.layout.VBox;
 
 public class MainViewController implements Initializable {
 	
-	@FXML
-	private MenuItem menuItemSeller;
-	
-	@FXML
-	private MenuItem menuItemDepartment;
-	
-	@FXML
-	private MenuItem menuItemAbout;
+	@FXML private MenuItem menuItemSeller;
+	@FXML private MenuItem menuItemDepartment;
+	@FXML private MenuItem menuItemAbout;
 	
 //	AÇÕES DOS ITENS NO MENU
 	
