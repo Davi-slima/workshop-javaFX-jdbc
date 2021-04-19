@@ -9,6 +9,7 @@ import application.Main;
 import gui.listeners.DataChangelistener;
 import gui.util.Alerts;
 import gui.util.utils;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.Scene;
@@ -34,6 +36,7 @@ public class DepartmentListController implements Initializable, DataChangelisten
 	@FXML private TableView<Department> tableViewDepartment;
 	@FXML private TableColumn<Department, Integer> tableColumnId;
 	@FXML private TableColumn<Department, String> tableColumnName;
+	@FXML private TableColumn<Department, Department> tableColumnEDIT;
 	@FXML private Button btNew;
 
 	private ObservableList<Department> obsList;
@@ -73,6 +76,7 @@ public class DepartmentListController implements Initializable, DataChangelisten
 		List<Department> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewDepartment.setItems(obsList);
+		initEditButtons();
 	}
 	
 		// # CAIXA DE DIÁLOGO (FORMULÁRIO DE DEPARTAMENTO) #
@@ -106,6 +110,27 @@ public class DepartmentListController implements Initializable, DataChangelisten
 		@Override
 		public void onDataChanged() {
 			updateTableView();
+		}
+		
+//		MÉTODO PARA CRIAR UM BOTÃO DE EKDIÇÃO EM CADA LINHA DA TABELA
+		
+		private void initEditButtons() {
+			tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+			tableColumnEDIT.setCellFactory(param -> new TableCell<Department, Department>() {
+				private final Button button = new Button("edit");
+
+				@Override
+				protected void updateItem(Department obj, boolean empty) {
+					super.updateItem(obj, empty);
+					if (obj == null) {
+						setGraphic(null);
+						return;
+					}
+					setGraphic(button);
+					button.setOnAction(
+							event -> createDialogForm(obj, "/gui/DepartmentForm.fxml", utils.currentStage(event)));
+				}
+			});
 		}
 
 }
