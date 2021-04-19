@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import gui.listeners.DataChangelistener;
 import gui.util.Alerts;
 import gui.util.utils;
 import javafx.collections.FXCollections;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
 import model.entities.Department;
 import model.services.DepartmentService;
 
-public class DepartmentListController implements Initializable {
+public class DepartmentListController implements Initializable, DataChangelistener {
 	
 	private DepartmentService service;
 	
@@ -74,7 +75,7 @@ public class DepartmentListController implements Initializable {
 		tableViewDepartment.setItems(obsList);
 	}
 	
-		// # Caixa de dialogo (formulario de departamento) #
+		// # CAIXA DE DIÁLOGO (FORMULÁRIO DE DEPARTAMENTO) #
 	
 	private void createDialogForm(Department obj, String absolutName, Stage parentStage) {
 		try {
@@ -84,6 +85,7 @@ public class DepartmentListController implements Initializable {
 			DepartmentFormController controller = loader.getController();
 			controller.setDepartment(obj);
 			controller.setDepartmentService(new DepartmentService());
+			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
@@ -98,5 +100,12 @@ public class DepartmentListController implements Initializable {
 			Alerts.showAlerts("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
 	}
+	
+		// # ATUALIZAÇÃO DOS DADOS DO FORMULÁRIO NA TELA #
+		
+		@Override
+		public void onDataChanged() {
+			updateTableView();
+		}
 
 }
