@@ -9,20 +9,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="524.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DepartmentListController">
+<VBox prefHeight="524.0" prefWidth="582.0" style="-fx-background-color: #FFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DepartmentListController">
    <children>
-      <Label text="Department registration">
+      <Label alignment="BOTTOM_CENTER" cache="true" contentDisplay="CENTER" prefHeight="30.0" prefWidth="2000.0" style="-fx-background-color: #FFFF;" text="Department registration" textOverrun="CENTER_WORD_ELLIPSIS">
          <VBox.margin>
             <Insets left="5.0" top="5.0" />
          </VBox.margin>
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </Label>
-      <ToolBar prefHeight="40.0" prefWidth="200.0">
+      <ToolBar prefHeight="50.0" prefWidth="583.0" style="-fx-background-color: #FFFF;">
         <items>
-          <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" text="New" />
+          <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #FFFF; -fx-border-color: GRAY; -fx-border-radius: 12;" text="New">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Button>
         </items>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
       </ToolBar>
       <TableView fx:id="tableViewDepartment" prefHeight="200.0" prefWidth="200.0">
         <columns>

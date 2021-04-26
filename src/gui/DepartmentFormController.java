@@ -11,7 +11,7 @@ import db.DbException;
 import gui.listeners.DataChangelistener;
 import gui.util.Alerts;
 import gui.util.Constraints;
-import gui.util.utils;
+import gui.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -49,7 +49,7 @@ public class DepartmentFormController implements Initializable {
 			entity = getFormData();
 			service.saveOrUpdate(entity);
 			notifyDataChancheListeners();
-			utils.currentStage(event).close();
+			Utils.currentStage(event).close();
 		}catch (ValidationExceptions e) {
 			setErrorMessages(e.getErrors());
 		}
@@ -69,7 +69,7 @@ public class DepartmentFormController implements Initializable {
 	
 	ValidationExceptions exception = new ValidationExceptions("Validation error");
 	
-	obj.setId(utils.tryParseToInt(txtId.getText()));
+	obj.setId(Utils.tryParseToInt(txtId.getText()));
 	
 	if (txtName.getText() == null || txtName.getText().trim().equals("")) {
 		exception.addError("name", "Field can't be enmpty");
@@ -84,7 +84,7 @@ public class DepartmentFormController implements Initializable {
 
 	@FXML
 	public void onBtCancelAction(ActionEvent event) {
-		utils.currentStage(event).close();
+		Utils.currentStage(event).close();
 	}
 	
 	// # DEPENDENCIAS #
