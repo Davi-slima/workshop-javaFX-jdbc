@@ -10,6 +10,7 @@ import java.util.List;
 
 import db.DB;
 import db.DbException;
+import db.DbIntegrityException;
 import model.dao.DepartmentDao;
 import model.entities.Department;
 
@@ -81,23 +82,20 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 	public void deleteById(Integer id) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("DELETE FROM seller "
-					+ " WHERE "
-					+ "id = ?");
+			st = conn.prepareStatement(
+				"DELETE FROM department WHERE Id = ?");
+
 			st.setInt(1, id);
-			int rowsAffected = st.executeUpdate();
-			
-			if (rowsAffected == 0) {
-				throw new DbException("Unexist id");
-			}
-			
-		}catch (SQLException e) {
-			throw new DbException(e.getMessage());
+
+			st.executeUpdate();
 		}
+		catch (SQLException e) {
+			throw new DbIntegrityException(e.getMessage());
+		} 
 		finally {
 			DB.closeStatement(st);
 		}
-}
+	}
 	
 	@Override
 	public Department findById(Integer id) {
