@@ -32,7 +32,6 @@
         </rowConstraints>
          <children>
             <Label text="Base Salary" GridPane.rowIndex="4" />
-            <Label fx:id="labelErrorName" textFill="#ee0d0d" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Id" />
             <Label text="Name" GridPane.rowIndex="1">
                <padding>
@@ -52,6 +51,23 @@
                <padding>
                   <Insets top="10.0" />
                </padding></TextField>
+            <TextField fx:id="txtEmail" prefHeight="27.0" prefWidth="238.0" style="-fx-border-radius: 5; -fx-border-color: gray; -fx-background-color: #FFFF;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </TextField>
+            <DatePicker fx:id="dpBirthDate" prefHeight="35.0" prefWidth="240.0" style="-fx-border-radius: 10; -fx-background-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </DatePicker>
+            <TextField fx:id="txtBaseSalary" style="-fx-border-radius: 5; -fx-border-color: gray; -fx-background-color: #FFFF;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </TextField>
+            <ComboBox fx:id="comboBoxDepartment" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: #FFFF; -fx-border-color: gray; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="labelErrorName" textFill="#ee0d0d" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
                   <Button fx:id="btSave" mnemonicParsing="false" onAction="#onBtSaveAction" prefHeight="30.0" prefWidth="92.0" style="-fx-background-color: #FFFF; -fx-border-color: gray; -fx-border-radius: 10;" text="Save">
@@ -70,25 +86,9 @@
             <Label text="Email" GridPane.rowIndex="2" />
             <Label text="Birth Date" GridPane.rowIndex="3" />
             <Label text="Department" GridPane.rowIndex="5" />
-            <TextField fx:id="txtEmail" prefHeight="27.0" prefWidth="238.0" style="-fx-border-radius: 5; -fx-border-color: gray; -fx-background-color: #FFFF;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </TextField>
-            <TextField fx:id="txtBaseSalary" style="-fx-border-radius: 5; -fx-border-color: gray; -fx-background-color: #FFFF;" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </TextField>
-            <DatePicker fx:id="dpBirthDate" prefHeight="35.0" prefWidth="240.0" style="-fx-border-radius: 10; -fx-background-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </DatePicker>
             <Label fx:id="labelErrorEmail" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label fx:id="labelErrorBirthDate" textFill="#f80000" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label fx:id="labelErrorBaseSalary" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <ComboBox fx:id="comboBoxDepartment" prefHeight="25.0" prefWidth="236.0" style="-fx-background-color: #FFFF; -fx-border-color: gray; -fx-border-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </children>
