@@ -24,6 +24,8 @@ public class SellerDaoJDBC implements SellerDao {
 		this.conn = conn;
 	}
 
+	// # ---> MÉTODO PARA INSERIR DADOS <--- #
+	
 	@Override
 	public void insert(Seller obj) {
 		PreparedStatement st = null;

@@ -103,18 +103,17 @@ public class DepartmentListController implements Initializable, DataChangelisten
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.showAndWait();
 		} catch (IOException e) {
+			e.printStackTrace();
 			Alerts.showAlerts("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
 	}
 
-	// # ATUALIZAÇÃO DOS DADOS DO FORMULÁRIO NA TELA #
-
 	@Override
 	public void onDataChanged() {
-		updateTableView();
+		updateTableView(); // ATUALIZA OS DADOS NA TELA
 	}
 
-//		MÉTODO PARA CRIAR UM BOTÃO DE EKDIÇÃO EM CADA LINHA DA TABELA
+//		CRIAÇÃO DOS BOTÕES DE EDIÇÃO 
 
 	private void initEditButtons() {
 		tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
@@ -135,7 +134,7 @@ public class DepartmentListController implements Initializable, DataChangelisten
 		});
 	}
 
-//		MÉTODO PARA CRIAR UM BOTÃO DE REMOVER EM CADA LINHA DA TABELA
+//		CRIAÇÃO DOS BOTÕES DE REMOVER 
 
 	private void initRemoveButtons() {
 		tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));

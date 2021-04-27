@@ -28,11 +28,11 @@
             <Label fx:id="labelErrorName" textFill="#ee0d0d" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Id" />
             <Label text="Name" GridPane.rowIndex="1" />
-            <TextField fx:id="txtId" editable="false" GridPane.columnIndex="1">
+            <TextField fx:id="txtId" editable="false" style="-fx-background-color: #FFFF; -fx-border-color: gray; -fx-border-radius: 5;" GridPane.columnIndex="1">
                <padding>
                   <Insets top="10.0" />
                </padding></TextField>
-            <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="txtName" style="-fx-background-color: #FFFF; -fx-border-color: gray; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets top="10.0" />
                </padding></TextField>

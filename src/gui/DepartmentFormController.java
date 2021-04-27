@@ -28,7 +28,6 @@ public class DepartmentFormController implements Initializable {
 	private Department entity;
 	private DepartmentService service;
 	private List<DataChangelistener> dataChangeListeners = new ArrayList<>();
-	
 	@FXML private TextField txtId;
 	@FXML private TextField txtName;
 	@FXML private Label labelErrorName;
@@ -113,7 +112,7 @@ public class DepartmentFormController implements Initializable {
 		Constraints.setTextFieldMaxLength(txtName, 30);
 	}
 	
-//	 # MÉTODO PARA POPULAR AS CAIXAS DE TEXTO DO FORMULÁRIO #
+//	ATUALIZAÇÃO
 	
 	public void updateFormData() {
 		if (entity == null) {
@@ -123,7 +122,7 @@ public class DepartmentFormController implements Initializable {
 		txtName.setText(entity.getName());
 	}
 
-	// # MÉTODO PARA ESCREVER OS ERROS NA TELA #
+//	 PRESENTAÇÃO DOS ERROS 
 	
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();

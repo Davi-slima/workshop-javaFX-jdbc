@@ -31,6 +31,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Seller;
+import model.services.DepartmentService;
 import model.services.SellerService;
 
 public class SellerListController implements Initializable, DataChangelistener {
@@ -47,16 +48,14 @@ public class SellerListController implements Initializable, DataChangelistener {
 	@FXML private Button btNew;
 	private ObservableList<Seller> obsList;
 
-//	AÇÃO DO BOTÃO NEW
-
-	@FXML
+	@FXML 
 	public void onBtNewAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
 		Seller obj = new Seller();
 		createDialogForm(obj, "/gui/SellerForm.fxml", parentStage);
 	}
 
-//	INJEÇÃO DE CONTROLE DE DEPENDÊNCIA MANUAl
+//	CONTROLE DE DEPENDÊNCIA MANUAl
 
 	public void setSellerService(SellerService service) {
 		this.service = service;
@@ -91,7 +90,7 @@ public class SellerListController implements Initializable, DataChangelistener {
 		initRemoveButtons();
 	}
 
-	// # CAIXA DE DIÁLOGO (FORMULÁRIO DE DEPARTAMENTO) #
+	// # FORMULÁRIO DE VENDAS #
 
 	private void createDialogForm(Seller obj, String absolutName, Stage parentStage) {
 		try {
@@ -100,7 +99,8 @@ public class SellerListController implements Initializable, DataChangelistener {
 
 			SellerFormController controller = loader.getController();
 			controller.setSeller(obj);
-			controller.setSellerService(new SellerService());
+			controller.setServices(new SellerService(), new DepartmentService());
+			controller.loadAssociatedObjects();
 			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
 
@@ -112,18 +112,15 @@ public class SellerListController implements Initializable, DataChangelistener {
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.showAndWait();
 		} catch (IOException e) {
+			e.printStackTrace();
 			Alerts.showAlerts("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
 	}
 
-	// # ATUALIZAÇÃO DOS DADOS DO FORMULÁRIO NA TELA #
-
 	@Override
-	public void onDataChanged() {
-		updateTableView();
+	public void onDataChanged() { 
+		updateTableView(); // ATUALIZAÇÃO DOS DADOS DO FORMULÁRIO
 	}
-
-//		MÉTODO PARA CRIAR UM BOTÃO DE EKDIÇÃO EM CADA LINHA DA TABELA
 
 	private void initEditButtons() {
 		tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
@@ -143,8 +140,6 @@ public class SellerListController implements Initializable, DataChangelistener {
 			}
 		});
 	}
-
-//		MÉTODO PARA CRIAR UM BOTÃO DE REMOVER EM CADA LINHA DA TABELA
 
 	private void initRemoveButtons() {
 		tableColumnREMOVE.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
