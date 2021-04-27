@@ -24,8 +24,6 @@ public class SellerDaoJDBC implements SellerDao {
 		this.conn = conn;
 	}
 
-	// # ---> MÉTODO PARA INSERIR DADOS <--- #
-	
 	@Override
 	public void insert(Seller obj) {
 		PreparedStatement st = null;
@@ -65,8 +63,6 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 	}
 	
-	// # ---> MÉTODO PARA ATUALIZAÇÃO DE DADOS <--- #
-
 	@Override
 	public void uppdate(Seller obj) {
 		PreparedStatement st = null;
@@ -114,8 +110,6 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 	}
 	
-//		# ---> MÉTODOS PARA ENCONTRAR VENDEDORES E SEUS RESPECTIVOS DEPARTAMENTOS <--- #
-
 	@Override
 	public Seller findById(Integer id) {
 		PreparedStatement st = null;
@@ -149,20 +143,16 @@ public class SellerDaoJDBC implements SellerDao {
 		
 	}
 	
-	// #	SET DA TABELA DE VENDEDORES:
-	
 	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
 		Seller obj = new Seller();
 		obj.setId(rs.getInt("Id"));
 		obj.setName(rs.getString("Name"));
 		obj.setEmail(rs.getString("Email"));
 		obj.setBaseSalary(rs.getDouble("BaseSalary"));
-		obj.setBirthDate(rs.getDate("BirthDate"));
+		obj.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
 		obj.setDepartment(dep);
 		return obj;
 	}
-
-	// #	INSTANCIA DO DEPARTAMENTO: 
 
 	private Department instatintiateDepartment(ResultSet rs) throws SQLException {
 		Department dep = new Department();
@@ -186,8 +176,6 @@ public class SellerDaoJDBC implements SellerDao {
 			
 			List<Seller> list = new ArrayList<>();
 			Map<Integer, Department> map = new HashMap<>();
-			
-			// CONTROLE DE NÃO REPETIÇÃO DE DEPARTAMENTOS:
 			
 			while (rs.next()) {
 				
@@ -229,8 +217,6 @@ public class SellerDaoJDBC implements SellerDao {
 			
 			List<Seller> list = new ArrayList<>();
 			Map<Integer, Department> map = new HashMap<>();
-			
-			// CONTROLE DE NÃO REPETIÇÃO DE DEPARTAMENTOS:
 			
 			while (rs.next()) {
 				
